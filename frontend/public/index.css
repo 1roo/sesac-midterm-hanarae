@@ -28,14 +28,14 @@ header img {
   flex-direction: column;
 }
 
-.todos {
-  display: flex;
-}
-
 @media screen and (max-width: 540px) {
   body {
     width: 540px;
     overflow: hidden;
+  }
+  .todos {
+    display: flex;
+    flex-direction: column;
   }
 }
 
@@ -45,6 +45,10 @@ header img {
     max-width: 960px;
     overflow: hidden;
   }
+  .todos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
 }
 @media screen and (max-width: 800px) {
   body {
@@ -52,10 +56,18 @@ header img {
     max-width: 960px;
     overflow: hidden;
   }
+  .todos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
 }
 @media screen and (min-width: 960px) {
   body {
     max-width: 960px;
     overflow: hidden;
+  }
+  .todos {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }

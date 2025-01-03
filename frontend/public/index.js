@@ -7,19 +7,23 @@ window.addEventListener("DOMContentLoaded", (event) => {
 });
 
 function getTodos(x) {
-  const todo = document.querySelector(".todos");
+  const todoContainer = document.querySelector(".todos");
+  const todo = document.createElement("div");
   let checkBox = document.createElement("input");
   let todoSpan = document.createElement("span");
   let deleteBtn = document.createElement("button");
   axios.get("https://jsonplaceholder.typicode.com/todos").then((response) => {
     console.log(response.data);
     const data = response.data;
+
     for (let i = 0; i < x; i++) {
+      todoContainer.append(todo);
       todo.append(checkBox);
       checkBox.setAttribute("type", "checkbox");
       if (data[i].completed) {
         checkBox.checked = true;
       }
+
       todo.append(todoSpan);
       todoSpan.textContent = data[i].title;
       todoSpan.after(deleteBtn);
