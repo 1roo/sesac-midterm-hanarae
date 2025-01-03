@@ -67,7 +67,9 @@ function addTodo() {
 
 /*  3. x 버튼을 클릭하면 클릭한 버튼을 갖는 Todo 항목이 삭제됩니다. */
 // 삭제 함수의 이름 및 모양 변경 가능
-function deleteTodo(item) {}
+function deleteTodo(item) {
+  axios.delete("https://jsonplaceholder.typicode.com/todos", item);
+}
 
 /* 
  4. Todo 목록 불러오기,  
