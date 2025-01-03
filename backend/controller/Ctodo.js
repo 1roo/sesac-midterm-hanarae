@@ -2,16 +2,13 @@ const { Todo } = require("../models/index");
 
 /* Todos 전체 목록 불러오기 */
 exports.readAll = async (req, res) => {
-  const todos = Todo.findAll({}).then((result) => console.log(result));
-  if (todos) {
-    res.send(todos);
-  }
+  await Todo.findAll({}).then((result) => res.send(result));
 };
 
 /* Todo 한 개 불러오기 */
 exports.readOne = async (req, res) => {
   const { id } = req.param;
-  const todo = Todo.findOne({ where: { id } }).then((result) => {
+  const todo = await Todo.findOne({ where: { id } }).then((result) => {
     if (result) {
       res.send(todo);
     }
@@ -62,7 +59,7 @@ exports.delete = async (req, res) => {
   if (!result) {
     res.send({ message: "Todo not found" });
   } else {
-    Todo.destroy(
+    await Todo.destroy(
       { where: { id: req.body.id } }.then((result) => {
         res.send({ message: "Todo deleted successfully", deletedId: "1" });
       })
