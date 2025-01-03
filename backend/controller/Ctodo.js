@@ -38,7 +38,7 @@ exports.create = async (req, res) => {
 
 /* 기존 Todo 수정 */
 exports.update = async (req, res) => {
-  const { id, title, done } = req.body;
+  const { id } = req.param;
   if (id) {
     const result = await Todo.update({ where: { id } });
     if (!result) {
@@ -46,7 +46,7 @@ exports.update = async (req, res) => {
     } else {
       Todo.destroy(
         { where: { id: req.body.id } }.then((result) => {
-          res.send({ id: id, title: title, done: done });
+          res.send({ id: id, title: title });
         })
       );
     }
@@ -57,7 +57,7 @@ exports.update = async (req, res) => {
 
 /* 기존 Todo 삭제 */
 exports.delete = async (req, res) => {
-  const { id } = req.body;
+  const { id } = req.param;
   const result = await Todo.findOne({ where: { id } });
   if (!result) {
     res.send({ message: "Todo not found" });
