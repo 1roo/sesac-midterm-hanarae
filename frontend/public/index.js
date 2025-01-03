@@ -29,6 +29,9 @@ function getTodos(x) {
       todoSpan.after(deleteBtn);
       deleteBtn.textContent = "X";
       deleteBtn.setAttribute("type", "button");
+      deleteBtn.setAttribute("class", "deleteBtn");
+
+      deleteBtn.setAttribute("onclick", "deleteTodo()");
     }
   });
 }
@@ -39,7 +42,28 @@ function getTodos(x) {
   - 작성 버튼 클릭 시 addTodo() 함수가 실행됩니다.
   - 입력 창에서 Enter 키 입력시에도 addTodo() 함수가 실행됩니다.
 */
-function addTodo() {}
+function addTodo() {
+  const title = document.querySelector(".input").value;
+  const todoContainer = document.querySelector(".todos");
+  const todo = document.createElement("div");
+  let checkBox = document.createElement("input");
+  let todoSpan = document.createElement("span");
+  let deleteBtn = document.createElement("button");
+
+  todoContainer.append(todo);
+  todo.append(checkBox);
+  checkBox.setAttribute("type", "checkbox");
+
+  checkBox.checked = false;
+
+  todo.append(todoSpan);
+  todoSpan.textContent = title;
+  todoSpan.after(deleteBtn);
+  deleteBtn.textContent = "X";
+  deleteBtn.setAttribute("type", "button");
+  deleteBtn.setAttribute("class", "deleteBtn");
+  deleteBtn.setAttribute("onclick", "deleteTodo()");
+}
 
 /*  3. x 버튼을 클릭하면 클릭한 버튼을 갖는 Todo 항목이 삭제됩니다. */
 // 삭제 함수의 이름 및 모양 변경 가능
